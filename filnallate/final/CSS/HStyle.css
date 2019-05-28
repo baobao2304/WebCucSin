@@ -1,0 +1,198 @@
+﻿body {
+}
+#logo, #timkiem, #khuyenmai, #dangnhapdangky, #ktradonhang, #cuahang {
+    margin-left: 100px;
+    float: left;
+}
+
+.header {
+    background-color:black;
+    overflow: auto;
+    padding:50px;
+}
+
+#logo {
+    margin-left: 200px;
+}
+
+#txtTimKiem {
+    margin-bottom: 40px;
+    width:500px;
+}
+
+
+.fa-search {
+    position: absolute;
+    margin-top: 5px;
+    margin-left: 400px;
+    color: darkgray;
+}
+
+#timkiem {
+    margin-top: 30px;
+}
+
+#khuyenmai {
+    margin-top: 60px;
+}
+
+#km {
+    color: white;
+    margin-top: -10px;
+}
+
+#textkm {
+    color: white;
+    margin-left: 60px;
+    margin-top: -40px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#dangnhapdangky {
+    margin-top: -10px;
+}
+
+#dndk {
+    color: white;
+    margin-top: 30px;
+}
+
+#textdndk {
+    color: white;
+    margin-left: 60px;
+    margin-top: -45px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#ktradonhang {
+    margin-top: 30px;
+}
+
+#ktth {
+    color: white;
+    margin-top: -10px;
+}
+
+#textktth {
+    color: white;
+    margin-left: 70px;
+    margin-top: -40px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#cuahang {
+    margin-top: 30px;
+}
+
+#ch {
+    color: white;
+    margin-top: -10px;
+}
+
+
+#menu {
+    width: 690px;
+    height: 536px;
+    position: relative;
+    z-index: 2;
+}
+
+    #menu ul {
+        list-style: none;
+        width: 100%;
+        height: 100%;
+        background-color: yellowgreen;
+        padding-left: 0;
+    }
+
+        #menu ul li {
+            padding-left: 50px;
+            position: relative;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 20px;
+        }
+
+            #menu ul li:hover {
+                color: white;
+                background-color: blueviolet;
+            }
+
+            #menu ul li a {
+                text-decoration: none;
+                font-weight: bold;
+                color: white;
+                display: block;
+            }
+
+        #menu ul ul {
+            z-index: 2;
+            position: absolute;
+            margin-left: 468px;
+            top: 0;
+            display: none;
+        }
+
+            #menu ul ul li {
+                background-color: yellowgreen;
+            }
+
+    #menu li:hover .menu1 {
+        display: block;
+    }
+
+
+
+
+#kichthuocimg {
+    width: 100px;
+    height: 100px;
+}
+/*end cardCredid*/
+#contentChinh {
+}
+/*
+.img-responsive(@display: block) {
+    height:100px;
+}
+    */
+/*.NHAN {
+    width: 100px;
+    height: 100px;
+}*/
+
+.bao {
+    width: 100%;
+    height: 800px;
+}
+.menuphai{
+    height:100px !important;
+}
+
+
+/*start loading*/
+.load {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100000000000000;
+    display: block;
+    overflow: hidden;
+}
+
+    .load img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+/*end loading*/
+
+.footter{
+    background-color:black;
+    
+}

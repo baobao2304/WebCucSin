@@ -1,0 +1,26 @@
+﻿body {
+}
+.sanpham{
+    width:200px;
+    height:220px;
+}
+.rows{
+    margin-left:180px;
+}
+.colorChu{
+    color:red;
+}
+.giohang{
+    text-decoration:none;
+    color:white;
+    background-color:orange;
+    padding-left:5px;
+    padding-right:5px;
+    padding-bottom:5px;
+    padding-top:5px;
+    margin-left:40px;
+}
+.chotdon{
+    background-color:orange;
+    margin-left:500px;
+}

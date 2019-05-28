@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLTHIETBIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CHITIETHD">
+          <Key>
+            <PropertyRef Name="MAHD" />
+            <PropertyRef Name="MALK" />
+          </Key>
+          <Property Name="MAHD" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="MALK" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="SOLUONG" Type="int" />
+          <Property Name="DONGIA" Type="money" />
+        </EntityType>
+        <EntityType Name="HOADON">
+          <Key>
+            <PropertyRef Name="MAHD" />
+          </Key>
+          <Property Name="MAHD" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="NGAYHD" Type="datetime" />
+          <Property Name="MAKH" Type="char" MaxLength="10" />
+          <Property Name="TONGTIEN" Type="money" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="MAKH" />
+          </Key>
+          <Property Name="MAKH" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="TENKH" Type="nvarchar" MaxLength="50" />
+          <Property Name="SĐT" Type="int" />
+          <Property Name="DIACHI" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LINHKIEN">
+          <Key>
+            <PropertyRef Name="MALK" />
+          </Key>
+          <Property Name="MALK" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="TENLK" Type="nvarchar" MaxLength="50" />
+          <Property Name="DUONGDAN" Type="nvarchar" MaxLength="50" />
+          <Property Name="NGAYSX" Type="date" />
+          <Property Name="TGBH" Type="int" />
+          <Property Name="MALOAI" Type="char" MaxLength="10" />
+          <Property Name="THUONGHIEU" Type="nvarchar" MaxLength="50" />
+          <Property Name="MAUSAC" Type="nvarchar" MaxLength="50" />
+          <Property Name="GIA" Type="money" />
+        </EntityType>
+        <EntityType Name="LOAILK">
+          <Key>
+            <PropertyRef Name="MALOAI" />
+          </Key>
+          <Property Name="MALOAI" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="TENLOAI" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_CHITIETHD_HOADON">
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
+          <End Role="CHITIETHD" Type="Self.CHITIETHD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOADON">
+              <PropertyRef Name="MAHD" />
+            </Principal>
+            <Dependent Role="CHITIETHD">
+              <PropertyRef Name="MAHD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHITIETHD_LINHKIEN">
+          <End Role="LINHKIEN" Type="Self.LINHKIEN" Multiplicity="1" />
+          <End Role="CHITIETHD" Type="Self.CHITIETHD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LINHKIEN">
+              <PropertyRef Name="MALK" />
+            </Principal>
+            <Dependent Role="CHITIETHD">
+              <PropertyRef Name="MALK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOADON_KHACHHANG">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MAKH" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MAKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LINHKIEN_LOAILK">
+          <End Role="LOAILK" Type="Self.LOAILK" Multiplicity="0..1" />
+          <End Role="LINHKIEN" Type="Self.LINHKIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAILK">
+              <PropertyRef Name="MALOAI" />
+            </Principal>
+            <Dependent Role="LINHKIEN">
+              <PropertyRef Name="MALOAI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLTHIETBIModelStoreContainer">
+          <EntitySet Name="CHITIETHD" EntityType="Self.CHITIETHD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LINHKIEN" EntityType="Self.LINHKIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAILK" EntityType="Self.LOAILK" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CHITIETHD_HOADON" Association="Self.FK_CHITIETHD_HOADON">
+            <End Role="HOADON" EntitySet="HOADON" />
+            <End Role="CHITIETHD" EntitySet="CHITIETHD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHITIETHD_LINHKIEN" Association="Self.FK_CHITIETHD_LINHKIEN">
+            <End Role="LINHKIEN" EntitySet="LINHKIEN" />
+            <End Role="CHITIETHD" EntitySet="CHITIETHD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOADON_KHACHHANG" Association="Self.FK_HOADON_KHACHHANG">
+            <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+            <End Role="HOADON" EntitySet="HOADON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LINHKIEN_LOAILK" Association="Self.FK_LINHKIEN_LOAILK">
+            <End Role="LOAILK" EntitySet="LOAILK" />
+            <End Role="LINHKIEN" EntitySet="LINHKIEN" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLTHIETBIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CHITIETHD">
+          <Key>
+            <PropertyRef Name="MAHD" />
+            <PropertyRef Name="MALK" />
+          </Key>
+          <Property Name="MAHD" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="MALK" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SOLUONG" Type="Int32" />
+          <Property Name="DONGIA" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="HOADON" Relationship="Self.FK_CHITIETHD_HOADON" FromRole="CHITIETHD" ToRole="HOADON" />
+          <NavigationProperty Name="LINHKIEN" Relationship="Self.FK_CHITIETHD_LINHKIEN" FromRole="CHITIETHD" ToRole="LINHKIEN" />
+        </EntityType>
+        <EntityType Name="HOADON">
+          <Key>
+            <PropertyRef Name="MAHD" />
+          </Key>
+          <Property Name="MAHD" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NGAYHD" Type="DateTime" Precision="3" />
+          <Property Name="MAKH" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="TONGTIEN" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="CHITIETHDs" Relationship="Self.FK_CHITIETHD_HOADON" FromRole="HOADON" ToRole="CHITIETHD" />
+          <NavigationProperty Name="KHACHHANG" Relationship="Self.FK_HOADON_KHACHHANG" FromRole="HOADON" ToRole="KHACHHANG" />
+        </EntityType>
+        <EntityType Name="KHACHHANG">
+          <Key>
+            <PropertyRef Name="MAKH" />
+          </Key>
+          <Property Name="MAKH" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TENKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SĐT" Type="Int32" />
+          <Property Name="DIACHI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HOADONs" Relationship="Self.FK_HOADON_KHACHHANG" FromRole="KHACHHANG" ToRole="HOADON" />
+        </EntityType>
+        <EntityType Name="LINHKIEN">
+          <Key>
+            <PropertyRef Name="MALK" />
+          </Key>
+          <Property Name="MALK" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TENLK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DUONGDAN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NGAYSX" Type="DateTime" Precision="0" />
+          <Property Name="TGBH" Type="Int32" />
+          <Property Name="MALOAI" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="THUONGHIEU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MAUSAC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GIA" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="CHITIETHDs" Relationship="Self.FK_CHITIETHD_LINHKIEN" FromRole="LINHKIEN" ToRole="CHITIETHD" />
+          <NavigationProperty Name="LOAILK" Relationship="Self.FK_LINHKIEN_LOAILK" FromRole="LINHKIEN" ToRole="LOAILK" />
+        </EntityType>
+        <EntityType Name="LOAILK">
+          <Key>
+            <PropertyRef Name="MALOAI" />
+          </Key>
+          <Property Name="MALOAI" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TENLOAI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LINHKIENs" Relationship="Self.FK_LINHKIEN_LOAILK" FromRole="LOAILK" ToRole="LINHKIEN" />
+        </EntityType>
+        <Association Name="FK_CHITIETHD_HOADON">
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
+          <End Role="CHITIETHD" Type="Self.CHITIETHD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOADON">
+              <PropertyRef Name="MAHD" />
+            </Principal>
+            <Dependent Role="CHITIETHD">
+              <PropertyRef Name="MAHD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHITIETHD_LINHKIEN">
+          <End Role="LINHKIEN" Type="Self.LINHKIEN" Multiplicity="1" />
+          <End Role="CHITIETHD" Type="Self.CHITIETHD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LINHKIEN">
+              <PropertyRef Name="MALK" />
+            </Principal>
+            <Dependent Role="CHITIETHD">
+              <PropertyRef Name="MALK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOADON_KHACHHANG">
+          <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+          <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MAKH" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MAKH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LINHKIEN_LOAILK">
+          <End Role="LOAILK" Type="Self.LOAILK" Multiplicity="0..1" />
+          <End Role="LINHKIEN" Type="Self.LINHKIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAILK">
+              <PropertyRef Name="MALOAI" />
+            </Principal>
+            <Dependent Role="LINHKIEN">
+              <PropertyRef Name="MALOAI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLTHIETBIEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CHITIETHDs" EntityType="Self.CHITIETHD" />
+          <EntitySet Name="HOADONs" EntityType="Self.HOADON" />
+          <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
+          <EntitySet Name="LINHKIENs" EntityType="Self.LINHKIEN" />
+          <EntitySet Name="LOAILKs" EntityType="Self.LOAILK" />
+          <AssociationSet Name="FK_CHITIETHD_HOADON" Association="Self.FK_CHITIETHD_HOADON">
+            <End Role="HOADON" EntitySet="HOADONs" />
+            <End Role="CHITIETHD" EntitySet="CHITIETHDs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHITIETHD_LINHKIEN" Association="Self.FK_CHITIETHD_LINHKIEN">
+            <End Role="LINHKIEN" EntitySet="LINHKIENs" />
+            <End Role="CHITIETHD" EntitySet="CHITIETHDs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOADON_KHACHHANG" Association="Self.FK_HOADON_KHACHHANG">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="HOADON" EntitySet="HOADONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LINHKIEN_LOAILK" Association="Self.FK_LINHKIEN_LOAILK">
+            <End Role="LOAILK" EntitySet="LOAILKs" />
+            <End Role="LINHKIEN" EntitySet="LINHKIENs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLTHIETBIModelStoreContainer" CdmEntityContainer="QLTHIETBIEntities">
+          <EntitySetMapping Name="CHITIETHDs">
+            <EntityTypeMapping TypeName="QLTHIETBIModel.CHITIETHD">
+              <MappingFragment StoreEntitySet="CHITIETHD">
+                <ScalarProperty Name="MAHD" ColumnName="MAHD" />
+                <ScalarProperty Name="MALK" ColumnName="MALK" />
+                <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+                <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOADONs">
+            <EntityTypeMapping TypeName="QLTHIETBIModel.HOADON">
+              <MappingFragment StoreEntitySet="HOADON">
+                <ScalarProperty Name="MAHD" ColumnName="MAHD" />
+                <ScalarProperty Name="NGAYHD" ColumnName="NGAYHD" />
+                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+                <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHACHHANGs">
+            <EntityTypeMapping TypeName="QLTHIETBIModel.KHACHHANG">
+              <MappingFragment StoreEntitySet="KHACHHANG">
+                <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+                <ScalarProperty Name="TENKH" ColumnName="TENKH" />
+                <ScalarProperty Name="SĐT" ColumnName="SĐT" />
+                <ScalarProperty Name="DIACHI" ColumnName="DIACHI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LINHKIENs">
+            <EntityTypeMapping TypeName="QLTHIETBIModel.LINHKIEN">
+              <MappingFragment StoreEntitySet="LINHKIEN">
+                <ScalarProperty Name="MALK" ColumnName="MALK" />
+                <ScalarProperty Name="TENLK" ColumnName="TENLK" />
+                <ScalarProperty Name="DUONGDAN" ColumnName="DUONGDAN" />
+                <ScalarProperty Name="NGAYSX" ColumnName="NGAYSX" />
+                <ScalarProperty Name="TGBH" ColumnName="TGBH" />
+                <ScalarProperty Name="MALOAI" ColumnName="MALOAI" />
+                <ScalarProperty Name="THUONGHIEU" ColumnName="THUONGHIEU" />
+                <ScalarProperty Name="MAUSAC" ColumnName="MAUSAC" />
+                <ScalarProperty Name="GIA" ColumnName="GIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAILKs">
+            <EntityTypeMapping TypeName="QLTHIETBIModel.LOAILK">
+              <MappingFragment StoreEntitySet="LOAILK">
+                <ScalarProperty Name="MALOAI" ColumnName="MALOAI" />
+                <ScalarProperty Name="TENLOAI" ColumnName="TENLOAI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
